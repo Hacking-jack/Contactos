@@ -4,7 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.util.UUID;
-
+/*
+Clase generadira de los objetos Contacto que van a contener los datos de al agenda
+ */
 @AllArgsConstructor@Data
 public class Contacto {
     private UUID id;

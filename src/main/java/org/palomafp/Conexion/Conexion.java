@@ -5,32 +5,28 @@ import lombok.Getter;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 @Getter
+/*
+Clase diseñada para la proveer entradas y salidas de datos de una unica vez
+ */
 public class Conexion {
-    public Scanner sc;
-
-
-    public Conexion(Scanner sc) throws FileNotFoundException {
-        this.sc = new Scanner(new File("//src//agenda.csv"));
+    private Scanner sc;
+    protected Scanner s2;
+    private PrintWriter txt;
+/*
+Construxtor de la calse iniclaliza todos los IO del programa
+ */
+    public Conexion(String path) throws FileNotFoundException {
+        File file =new File(path);
+        this.sc = new Scanner(file);
+        this.s2= new Scanner(System.in);
+        this.txt = new PrintWriter(file);
     }
     public void cerrar(){
         this.sc.close();
+        this.s2.close();
     }
 
-    public  int leerNumer(int n1, int n2) {
-        boolean trigger = false;
-
-        int introducido = sc.nextInt();
-        do {
-            if (n1 <= introducido && introducido <= n2) {
-                trigger = true;
-            } else {
-                System.out.println("Opcion no valida ");
-                introducido = sc.nextInt();
-            }
-        } while (!trigger);
-
-        return introducido;
-    }
 }
