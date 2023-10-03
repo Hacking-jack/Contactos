@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.palomafp.Conexion.Conexion;
 import org.palomafp.Contactos.Contacto;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -16,7 +17,7 @@ public class Agenda {
 /*
 lista de contactos
  */
-    private List<Contacto> contactos;
+    private List<Contacto> contactos = new LinkedList<Contacto>();
     /*
     conexion
      */
@@ -32,11 +33,18 @@ carga el contenido del csv a un lista de contactos por objetos
     private void contactos() {
 
         while (c1.getSc().hasNext()) {
-            String csv = c1.getSc().next().substring(1);
-            String csv1 = csv.substring(0, csv.length() - 1);
-            String[] datos = csv1.split(" \",\" ");
-            Contacto contacto1 = new Contacto(UUID.fromString(datos[0]), datos[1], datos[2], Integer.parseInt(datos[3]));
-            this.contactos.add(contacto1);
+            String[] csv = c1.getSc().next().split(",");
+
+            for (int i = 0; i < csv.length; i++) {
+                String dato = csv[i];
+                csv[i]=csv[i].substring(1, csv[i].length() - 1);
+            }
+
+            Contacto contacto1 = new Contacto(UUID.fromString(csv[0]), csv[1], csv[2], Integer.parseInt(csv[3]));
+            if(contacto1!=null){
+            this.contactos.add(contacto1);}else {
+                System.out.println("no tienes contactos");
+            }
         }
 
 
@@ -56,14 +64,14 @@ busca un uuid mediante uuid
 /*
 busca un contacto mediante su nombre
  */
-    public Contacto buscarNombre(String nombre) {
-        Optional<Contacto> result = null;
+    public List<Contacto> buscarNombre(String nombre) {
+        List<Contacto> resultado= new LinkedList<Contacto>();
         for (Contacto persona : contactos) {
-            if (persona.getNombre().equals(nombre) && !persona.getId().equals(new UUID(0, 0))) {
-                result = Optional.of(persona); // Assign the matching persona to resultado
+            if (persona.getNombre().contains(nombre) && !persona.getId().equals(new UUID(0, 0))) {
+                resultado.add(persona);
             }
         }
-        return result.get();
+        return resultado;
     }
 /*
 muestra todos los contactos de la lista
@@ -76,11 +84,23 @@ muestra todos los contactos de la lista
 /*
 borra el contacto al asignar su uuid a 0 todos los numeros
  */
+    //todo : hay que hacer este metodo que peta el resto funciona
     public void borrar(Contacto persona) {
+        String
         persona.setId(new UUID(0, 0));
+        persona
     }
-
-    public void anadir() {
-
+/*
+    añade al csv un contacto
+ */
+    public void anadir(String nombre,String telefono,int edad) {
+        Contacto nuevo= new Contacto(UUID.randomUUID(),nombre,telefono,edad);
+        this.c1.escribir(nuevo);
+    }
+    /*
+    referesca los contactos en la agenda
+     */
+    public void refrescar(){
+        contactos();
     }
 }

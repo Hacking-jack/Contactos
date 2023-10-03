@@ -21,13 +21,20 @@ este metodo maneja los errores al meter valores numericos invalidos
                 System.out.println(error);
                 evaluar = this.c1.getS2().nextInt();
             }
-        } while (menor <= evaluar && mayor >= evaluar);
+        } while (!(menor <= evaluar && mayor >= evaluar));
         return evaluar;
+    }
+    /*
+este metodo recoge texto por pantalla y le da un formato mediante el siguente metodo
+ */
+    public String texto() {
+        return format(this.c1.getS2().next());
     }
 /*
 este metodo recoge texto por pantalla y le da un formato mediante el siguente metodo
  */
-    public String texto() {
+    public String texto(String mensaje) {
+        System.out.println(mensaje);
         return format(this.c1.getS2().next());
     }
 /*
@@ -38,5 +45,8 @@ este metodo formatea el texto le quita los espacios alante y atras y lo pone en 
 
         return trimmed.toLowerCase();
 
+    }
+    public void cerrar(){
+        c1.cerrar();
     }
 }

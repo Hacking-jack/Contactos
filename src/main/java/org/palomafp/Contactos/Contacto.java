@@ -13,5 +13,8 @@ public class Contacto {
     private String nombre;
     private String telefono;
     private int edad;
-
+public String toCsv(){
+    String csv = '"'+id.toString()+ "\",\"" +nombre+ "\",\"" +telefono+ "\",\"" +edad+'"';
+    return csv;
+}
 }
