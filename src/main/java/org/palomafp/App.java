@@ -28,16 +28,21 @@ public class App
     	int num = 0;
     	switch (num) {
     	
-    	case (1) :
-    		
-    	case (2) :
-    		
-    	case (3) :
-    		
-    	case (4) :
-    		
-    	case (5) :
-    		
+    	case 1 :
+    		System.out.println("Introduce la clave del usuario");
+    		buscarUUID();
+    	case 2 :
+    		System.out.println("Introduce el nombre por el que buscar");
+    		buscarNombre();
+    	case 3 :
+    		System.out.println("Agenda");
+    		mostrarLista();
+    	case 4 :
+    		System.out.println("Introduce los datos del usuario");
+    		anadir();
+    	case 5 :
+    		System.out.println("Introduce la clave del usuario que quieras eliminar");
+    		borrar();
     	default :
     		System.out.println("Fin del programa");
     	}
