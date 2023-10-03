@@ -2,6 +2,8 @@ package org.palomafp;
 
 import java.util.Scanner;
 
+import org.palomafp.Objetos.Agenda;
+
 /**
  * Hello world!
  *
@@ -23,20 +25,21 @@ public class App
     			"2 " + "Buscar por el comienzo del nombre" +  "\n" +
     			"3 " + "Mostrar la agenda completa" + "\n" +
     			"4 " + "Añadir un contacto" + "\n" +
-    			"5 " + "Borrar un contacto" + "\n" 
+    			"5 " + "Borrar un contacto" + "\n"+
+						"0 Salir"
     			);
     	int num = 0;
     	switch (num) {
-    	
-    	case (1) :
+
+    	case 1 :
+
+    	case 2 :
     		
-    	case (2) :
+    	case 3 :
     		
-    	case (3) :
+    	case 4 :
     		
-    	case (4) :
-    		
-    	case (5) :
+    	case 5 :
     		
     	default :
     		System.out.println("Fin del programa");
