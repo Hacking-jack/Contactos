@@ -103,9 +103,7 @@ borra el contacto al asignar su uuid a 0 todos los numeros
     /*
     referesca los contactos en la agenda
      */
-    public void refrescar(){
-
+    public void refrescar() throws IOException {
         contactos();
-
     }
 }

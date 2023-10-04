@@ -2,11 +2,13 @@ package org.palomafp.Conexion;
 
 import lombok.Data;
 import lombok.Getter;
+import lombok.Setter;
 import org.palomafp.Contactos.Contacto;
 
 import java.io.*;
 import java.util.Scanner;
 @Getter
+@Setter
 /*
 Clase diseñada para la proveer entradas y salidas de datos de una unica vez
  */
@@ -41,4 +43,5 @@ Construxtor de la calse iniclaliza todos los IO del programa
         PrintWriter printWriter = new PrintWriter(fileWriter);
         printWriter.close();
     }
-}
+
+    }

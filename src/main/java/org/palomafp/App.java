@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
+import java.util.SortedMap;
 import java.util.UUID;
 
 import org.palomafp.Conexion.Conexion;
@@ -21,7 +22,7 @@ public class App {
      */
     public static void main(String[] args) {
         try {
-            Conexion c1 = new Conexion("/mnt/UbFiles/Contactos/src/main/java/org/palomafp/agenda.csv");
+            Conexion c1 = new Conexion("src//main//java//org//palomafp//agenda.csv");
             Agenda agenda1 = new Agenda(c1);
             Datos utilidades = new Datos(c1);
 
@@ -55,7 +56,13 @@ public class App {
         switch (num) {
 
             case 1:
-                System.out.println(agenda1.bucarUUID(UUID.fromString(utilidades.texto("Introduece UUID"))));
+                try{
+                System.out.println(agenda1.bucarUUID(UUID.fromString(utilidades.texto("Introduece UUID"))));}
+                catch (Exception e){
+                    System.out.println("UUID no valido");
+                }
+                agenda1.refrescar();
+
                 break;
             case 2:
                 List<Contacto> lista= agenda1.buscarNombre(utilidades.texto("INtroduce un nombre para buscar"));
@@ -63,6 +70,8 @@ public class App {
                 while(it.hasNext()){
                     System.out.println( it.next());
                 }
+                agenda1.refrescar();
+
                 break;
 
             case 3:
@@ -82,7 +91,7 @@ public class App {
                 System.out.println("Introduce el id de un contacto que quieras borrar");
                 Contacto borrarContacto = agenda1.bucarUUID(UUID.fromString(utilidades.texto()));
                 System.out.println("Tu contacto es : " + borrarContacto.toString());
-
+                System.out.println("Quieres borrarlo? 1 si 0 no");
                 int seguro = utilidades.numero(0, 1, "Dato no valido");
                 if (seguro == 1) {
                     agenda1.borrar(borrarContacto);
@@ -91,6 +100,7 @@ public class App {
                 } else {
                     System.out.println("Entendido");
                 }
+                agenda1.refrescar();
                 break;
 
             default:
