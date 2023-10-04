@@ -7,10 +7,9 @@ import lombok.RequiredArgsConstructor;
 import org.palomafp.Conexion.Conexion;
 import org.palomafp.Contactos.Contacto;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.io.IOException;
+import java.util.*;
+
 //clase  que genera una agenda de contactos en tu programa mediante un csv
 @Data
 public class Agenda {
@@ -84,11 +83,15 @@ muestra todos los contactos de la lista
 /*
 borra el contacto al asignar su uuid a 0 todos los numeros
  */
-    //todo : hay que hacer este metodo que peta el resto funciona
-    public void borrar(Contacto persona) {
-        String
+    public void borrar(Contacto persona) throws IOException {
+
         persona.setId(new UUID(0, 0));
-        persona
+        this.c1.vaciar();
+        Iterator<Contacto> it = contactos.iterator();
+        while (it.hasNext()){
+            c1.escribir(it.next());
+        }
+
     }
 /*
     añade al csv un contacto
@@ -101,6 +104,8 @@ borra el contacto al asignar su uuid a 0 todos los numeros
     referesca los contactos en la agenda
      */
     public void refrescar(){
+
         contactos();
+
     }
 }

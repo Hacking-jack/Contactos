@@ -11,6 +11,7 @@ import java.util.Scanner;
 Clase diseñada para la proveer entradas y salidas de datos de una unica vez
  */
 public class Conexion {
+    private File file;
     private Scanner sc;
     protected Scanner s2;
     private PrintWriter txt;
@@ -18,8 +19,8 @@ public class Conexion {
 Construxtor de la calse iniclaliza todos los IO del programa
  */
     public Conexion(String path) throws IOException {
-        File file =new File(path);
-        this.sc = new Scanner(file);
+        this.file =new File(path);
+        this.sc = new Scanner(this.file);
         this.s2= new Scanner(System.in);
         this.txt = new PrintWriter (new FileWriter(path,true));
     }
@@ -33,5 +34,11 @@ Construxtor de la calse iniclaliza todos los IO del programa
         this.txt.println(linea);
 
     }
+    public void vaciar() throws IOException {
+        FileWriter fileWriter = new FileWriter(this.file);
 
+        // Crear un PrintWriter para escribir en el archivo
+        PrintWriter printWriter = new PrintWriter(fileWriter);
+        printWriter.close();
+    }
 }

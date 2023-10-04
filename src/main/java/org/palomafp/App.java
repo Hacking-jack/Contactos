@@ -1,6 +1,7 @@
 package org.palomafp;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
@@ -40,7 +41,7 @@ public class App {
      * Esta metodo muestra un menu y solicita que accion quieres realizar.
      *
      */
-    public static int menu(Datos utilidades, Agenda agenda1) {
+    public static int menu(Datos utilidades, Agenda agenda1) throws IOException {
         System.out.println("¿Que quieres hacer?");
         System.out.println(
                 "1 " + "Buscar por código de usuario" + "\n" +
